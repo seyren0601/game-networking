@@ -4,6 +4,7 @@
 #include "SocketAddress.h"
 #include "SocketAddressFactory.h"
 #include "UDPSocket.h"
+#include "SocketUtil.h"
 #include <WinSock2.h>
 #include <iostream>
 

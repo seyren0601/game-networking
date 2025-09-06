@@ -6,6 +6,11 @@
 #include <memory>
 #include "SocketAddress.h"
 
+// Forward declaration
+// (tells the compiler that this class exists, without including the full definition)
+// The class will be defined later in the code or in another file.
+class SocketUtil;
+
 class UDPSocket {
 public:
 	~UDPSocket();
@@ -21,16 +26,3 @@ private:
 	UDPSocket(SOCKET inSocket) : mSocket(inSocket) { }
 };
 typedef std::shared_ptr<UDPSocket> UDPSocketPtr;
-
-enum SocketAddressFamily {
-	INET = AF_INET,
-	INET6 = AF_INET6
-};
-
-class SocketUtil {
-private:
-public:
-	static UDPSocketPtr CreateUDPSocket(SocketAddressFamily inFamily);
-	static void ReportError(const std::wstring error);
-	static int GetLastError();
-};
