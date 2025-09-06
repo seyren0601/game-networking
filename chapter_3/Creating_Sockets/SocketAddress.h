@@ -31,6 +31,7 @@ public:
 
 private:
 	friend class UDPSocket;
+	friend class TCPSocket;
 	sockaddr mSockAddr;
 };
 typedef shared_ptr<SocketAddress> SocketAddressPtr;

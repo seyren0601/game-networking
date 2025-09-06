@@ -29,6 +29,12 @@ int main()
 		return 1;
 	}
 
+	auto tcpSocket = SocketUtil::CreateTCPSocket(SocketAddressFamily::INET);
+	if (!tcpSocket) {
+		cerr << "Failed dto create TCP socket." << endl;
+		return 1;
+	}
+
 
 	int closeResult = WSACleanup();
 	if (closeResult != 0) {
