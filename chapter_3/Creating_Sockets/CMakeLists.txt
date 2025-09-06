@@ -12,7 +12,7 @@ endif()
 project ("Creating_Sockets")
 
 # Add source to this project's executable.
-add_executable (Creating_Sockets "Creating_Sockets.cpp" "Creating_Sockets.h"  "SocketAddress.h" "SocketAddressFactory.h")
+add_executable (Creating_Sockets "Creating_Sockets.cpp"   "SocketAddress.h" "SocketAddressFactory.h" "UDPSocket.h" "UDPSocket.cpp")
 target_link_libraries(Creating_Sockets PRIVATE ws2_32)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

@@ -30,7 +30,7 @@ public:
 	sockaddr_in* GetAsSockAddrIn() { return reinterpret_cast<sockaddr_in*>(&mSockAddr); }
 
 private:
+	friend class UDPSocket;
 	sockaddr mSockAddr;
 };
-
 typedef shared_ptr<SocketAddress> SocketAddressPtr;

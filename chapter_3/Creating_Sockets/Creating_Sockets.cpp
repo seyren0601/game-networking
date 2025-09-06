@@ -3,7 +3,7 @@
 
 #include "SocketAddress.h"
 #include "SocketAddressFactory.h"
-#include "Creating_Sockets.h"
+#include "UDPSocket.h"
 #include <WinSock2.h>
 #include <iostream>
 
@@ -21,13 +21,12 @@ int main()
 
 	// Create a SocketAddress using the factory method
 	SocketAddressFactory factory;
-	auto factoryCreatedSocket = factory.CreateIPv4FromString("192.168.1.3:7000");
-	cout << "Factory created SocketAddress with address: "
-		 << static_cast<int>(factoryCreatedSocket->GetAsSockAddrIn()->sin_addr.S_un.S_un_b.s_b1) << "."
-		 << static_cast<int>(factoryCreatedSocket->GetAsSockAddrIn()->sin_addr.S_un.S_un_b.s_b2) << "."
-		 << static_cast<int>(factoryCreatedSocket->GetAsSockAddrIn()->sin_addr.S_un.S_un_b.s_b3) << "."
-		 << static_cast<int>(factoryCreatedSocket->GetAsSockAddrIn()->sin_addr.S_un.S_un_b.s_b4)
-		<< " and port: " << ntohs(factoryCreatedSocket->GetAsSockAddrIn()->sin_port) << endl;
+	auto ptrSocketAddress = factory.CreateIPv4FromString("192.168.1.3:7000");
+	auto udpSocket = SocketUtil::CreateUDPSocket(SocketAddressFamily::INET);
+	if (!udpSocket) {
+		cerr << "Failed to create UDP socket." << endl;
+		return 1;
+	}
 
 
 	int closeResult = WSACleanup();
